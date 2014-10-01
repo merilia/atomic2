@@ -1,5 +1,17 @@
 <?
 $_GET['page'] = isset($_GET['page']) ? $_GET['page'] : 'home';
+session_start();
+if (isset($_SESSION['user_id'])) {
+    $logged_in = true;
+} else {
+    if (isset($_POST['login'])) {
+        echo "Oled sisse logitud";
+
+    } else {
+        require 'login.php';
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +30,7 @@ $_GET['page'] = isset($_GET['page']) ? $_GET['page'] : 'home';
 
     <!-- Custom styles for this template -->
     <link href="style.css" rel="stylesheet">
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]>
@@ -56,9 +68,9 @@ $_GET['page'] = isset($_GET['page']) ? $_GET['page'] : 'home';
             <li <?= $_GET['page'] == 'about' ? 'class="active"' : '' ?>><a href="?page=about">Meist</a></li>
 
         </ul>
-        <h3 class="text-muted">Atomic OÜ</h3>
+        <h3 class="text-muted"><a href="?">Atomic OÜ</a></h3>
     </div>
-    <? require $_GET['page'].'.php' ?>
+    <? require $_GET['page'] . '.php' ?>
     <div class="footer">
         <p>&copy; Atomic OÜ 2014</p>
     </div>
