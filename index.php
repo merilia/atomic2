@@ -5,6 +5,7 @@ if (isset($_SESSION['user_id'])) {
     $logged_in = true;
 } else {
     if (isset($_POST['login'])) {
+        $_SESSION['user_id']=1;
         echo "Oled sisse logitud";
 
     } else {
@@ -66,6 +67,7 @@ if (isset($_SESSION['user_id'])) {
             <li <?= $_GET['page'] == 'home' ? 'class="active"' : '' ?>><a href="?page=home">Avaleht</a></li>
             <li <?= $_GET['page'] == 'contact' ? 'class="active"' : '' ?>><a href="?page=contact">Kontakt</a></li>
             <li <?= $_GET['page'] == 'about' ? 'class="active"' : '' ?>><a href="?page=about">Meist</a></li>
+            <li ><a href="?page=<?= empty($_SESSION['user_id']) ? 'login' : 'logout' ?>">Logi <?= empty($_SESSION['user_id']) ? 'sisse' : 'välja' ?></a></li>
 
         </ul>
         <h3 class="text-muted"><a href="?">Atomic OÜ</a></h3>
